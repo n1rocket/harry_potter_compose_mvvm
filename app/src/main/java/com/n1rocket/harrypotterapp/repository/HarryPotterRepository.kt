@@ -18,9 +18,9 @@ class HarryPotterRepository(
         val responseFromServer = dataSource.getCharactersFromHouse(house)
 
         responseFromServer.results.forEach {
-            characterDao.insert(CharacterHP(it.name ?: "", it.photo ?: ""))
+            characterDao.insert(CharacterHP(it.name ?: "", it.image ?: ""))
         }
-        
+
         return characterDao.getAll()
     }
 }

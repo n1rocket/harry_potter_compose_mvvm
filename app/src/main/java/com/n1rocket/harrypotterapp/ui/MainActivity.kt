@@ -14,7 +14,9 @@ import androidx.navigation.navArgument
 import com.n1rocket.harrypotterapp.model.HouseType
 import com.n1rocket.harrypotterapp.ui.screens.HouseDetailScreen
 import com.n1rocket.harrypotterapp.ui.screens.HousesScreen
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     val houses: List<HouseType> = listOf(
