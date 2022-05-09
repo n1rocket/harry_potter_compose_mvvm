@@ -10,6 +10,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Named
@@ -24,10 +26,24 @@ class DataSourceModule {
     @Named("BaseUrl")
     fun provideBaseUrl() = "http://hp-api.herokuapp.com/api/"
 
+
+    private val logging : HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
+        this.level = HttpLoggingInterceptor.Level.BODY
+    }
+
     @Singleton
     @Provides
-    fun provideRetrofit(@Named("BaseUrl") baseUrl: String): Retrofit {
+    fun provideClient():OkHttpClient{
+        return OkHttpClient.Builder()
+            .addInterceptor(logging)
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideRetrofit(@Named("BaseUrl") baseUrl: String, okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
+            .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(baseUrl)
             .build()

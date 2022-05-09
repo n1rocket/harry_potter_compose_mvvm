@@ -16,11 +16,11 @@ interface CharacterDao {
     fun insert(characterHP: CharacterHP)
 
     @Query("SELECT * FROM character ORDER BY id DESC")
-    fun getAll(): LiveData<List<CharacterHP>>
+    fun getAll(): List<CharacterHP>
 
 
     @Query("SELECT * FROM character WHERE name = :name")
-    fun getCharacterById(name: String): LiveData<CharacterHP>
+    fun getCharacterById(name: String): CharacterHP
 
     @Delete
     fun delete(characterHP: CharacterHP)
