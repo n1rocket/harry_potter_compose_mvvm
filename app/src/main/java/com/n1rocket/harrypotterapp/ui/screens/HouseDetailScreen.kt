@@ -16,10 +16,10 @@ import com.n1rocket.harrypotterapp.ui.theme.HarryPotterAppTheme
 @Composable
 fun HouseDetailScreen(
     navHostController: NavHostController,
-    nameHouse: String?,
+    nameHouse: String,
     viewModel: HouseDetailViewModel
 ) {
-    val characters by viewModel.getCharacters().observeAsState()
+    val characters by viewModel.getCharacters(nameHouse).observeAsState()
 
     HarryPotterAppTheme {
         // A surface container using the 'background' color from the theme
@@ -28,7 +28,7 @@ fun HouseDetailScreen(
             color = MaterialTheme.colors.background
         ) {
             Column {
-                Text(text = nameHouse ?: "")
+                Text(text = nameHouse)
                 characters?.map {
                     Text(it.name)
                 }

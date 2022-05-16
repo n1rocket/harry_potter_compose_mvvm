@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
                 ) { navBack ->
                     HouseDetailScreen(
                         navController,
-                        navBack.arguments?.getString("house"),
+                        navBack.arguments?.getString("house")!!,
                         hiltViewModel()
                     )
                 }

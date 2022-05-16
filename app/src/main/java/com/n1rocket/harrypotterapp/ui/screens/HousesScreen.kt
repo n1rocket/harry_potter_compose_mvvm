@@ -48,25 +48,6 @@ fun House(navController: NavHostController, house: HouseType) {
                 .background(colorResource(house.color))
         )
         Button(
-            onClick = { /* ... */ },
-            // Uses ButtonDefaults.ContentPadding by default
-            contentPadding = PaddingValues(
-                start = 20.dp,
-                top = 12.dp,
-                end = 20.dp,
-                bottom = 12.dp
-            )
-        ) {
-            // Inner content including an icon and a text label
-            Icon(
-                Icons.Filled.Favorite,
-                contentDescription = "Favorite",
-                modifier = Modifier.size(ButtonDefaults.IconSize)
-            )
-            Spacer(Modifier.size(ButtonDefaults.IconSpacing))
-            Text("Like")
-        }
-        Button(
             onClick = {
                 print("-----> House clicked")
                 navController.navigate("detail/${house.name}")
